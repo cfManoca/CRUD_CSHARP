@@ -10,9 +10,9 @@ public class Veiculo
     [StringLength(8, MinimumLength = 7)]
     public string Placa { get; set; } = string.Empty;
 
-    [Required]
-    [StringLength(60)]
-    public string Marca { get; set; } = string.Empty;
+    [Range(1, int.MaxValue, ErrorMessage = "Selecione a Marca do Carro.")]
+    [Display(Name = "Marca")]
+    public MarcaCarro Marca { get; set; } = MarcaCarro.NaoInformada;
 
     [Required]
     [StringLength(60)]
@@ -23,10 +23,12 @@ public class Veiculo
 
     [Required]
     [Range(10, 1000)]
+    [Display(Name = "Capacidade Tanque (L)")]
     public decimal CapacidadeTanqueLitros { get; set; }
 
-    [Required]
-    public TipoCombustivel Combustivel { get; set; }
+    [Range(1, int.MaxValue, ErrorMessage = "Selecione O Tipo de Combustivel veículo.")]
+    [Display(Name = "Tipo Combustivel")]
+    public TipoCombustivel Combustivel { get; set; } = TipoCombustivel.NaoInformada;
 
     [Range(1, int.MaxValue, ErrorMessage = "Selecione a categoria do veículo.")]
     [Display(Name = "Categoria")]
